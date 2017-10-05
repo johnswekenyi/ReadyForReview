@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+src/main/
+target/generated-test-sources/
+target/test-classes/pages/SignUpKePage.class
+target/test-classes/providers/KeSignUpPageStringProviders.class
+target/test-classes/providers/SignUpPageStringProviders.class
+target/test-classes/test/SignUpKeTest.class
