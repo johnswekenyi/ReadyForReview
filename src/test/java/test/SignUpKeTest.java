@@ -2,7 +2,6 @@ package test;
 
 import org.testng.annotations.Test;
 import pages.SignUpKePage;
-import pages.SplashScreenKePage;
 import providers.KeSignUpPageStringProviders;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -14,19 +13,23 @@ public class SignUpKeTest extends TestBase {
 
     @Test
     public void testSignUp_fromSplashScreen(){
+
+        //When
+        splashScreenToSignUpPage();
+
+        //Then
         SignUpKePage signUpKePage = new SignUpKePage(driver);
-        SplashScreenKePage splashScreenKePage = new SplashScreenKePage(driver);
-        splashScreenKePage.clickSignUpButton();
         assertThat(signUpKePage.getTitleText().getText(), is(keSignUpPageStringProviders.getTitleString()));
         assertThat(signUpKePage.getDescriptionText().getText(), is(keSignUpPageStringProviders.getDescriptionTestString()));
         assertThat(signUpKePage.getSecondaryDescriptionText().getText(),
                 is(keSignUpPageStringProviders.getSecondaryDescriptionString()));
         assertThat(signUpKePage.getCodeEdit().getText(), is(keSignUpPageStringProviders.getCodeString()));
         assertTrue(signUpKePage.getNumberEdit().isDisplayed());
-        signUpKePage.getNumberEdit().sendKeys(generateRandomKePhoneNumber());
-        System.out.println("\nGenerated number is " + generateRandomKePhoneNumber());
-        signUpKePage.clickNextButton();
 
+        //When
+        signUpPageToConfirmationCodePage();
+
+        //Then
         assertThat(signUpKePage.getBackButon().getText(), is(keSignUpPageStringProviders.getBackButonString()));
         assertThat(signUpKePage.getNextButon().getText(),is(keSignUpPageStringProviders.getNextButonString()));
     }
